@@ -1,0 +1,24 @@
+Hadoop CMD:
+
+hadoop fs -ls
+hadoop fs -mkdir ml-100k
+
+Uploading data from local file system to HDFS:
+
+To retrieve information(data) from the web server:
+wget http://media.sundog-soft.com/hadoop/ml-100k/u.data
+
+hadoop fs -copyFromLocal u.data ml-100k/u.data
+hadoop fs -ls ml-100k
+
+Removing the file from HDFS:
+hadoop fs -rm ml-100k/u.data
+hadoop fs -rmdir ml-100k
+hadoop fs -ls
+
+Help in hadoop:
+hadoop fs
+
+
+
+
