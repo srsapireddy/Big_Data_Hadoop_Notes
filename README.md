@@ -1,47 +1,4 @@
-# The Ultimate Hands-On Hadoop - Tame your Big Data!
-
-* Install Horton works stack (that contains Hadoop and other tools)
-    * `cd HDP_3.0.1_docker-deploy-scripts_18120587fc7fb/`
-    * `sh docker-deploy-hdp30.sh`
-        * In case you experience a port issue like: 
-            * `C:\Program Files\Docker\Docker\Resources\bin\docker.exe: Error response from daemon: driver failed programming external connectivity on endpoint sandbox-proxy (2e13894570ec36a982eb51009448c128854214a8286088e01da9f7881b6dd100): Error starting userland proxy: Bind for 0.0.0.0:50070: unexpected error Permission denied.`
-            * You can fix it by setting different ports inside the `sandbox/proxy/proxy-deploy.sh` file, this is dynamically generated when we run `sh docker-deploy-hdp30.sh`  
-                * Edit file `sandbox/proxy/proxy-deploy.sh`
-                * Modify conflicting port (first in keypair). For example, `6001:6001` to `16001:6001`
-                * Save/Exit the File
-                * Run bash script: bash `sandbox/proxy/proxy-deploy.sh`
-                * Repeat steps for continued port conflicts
-                * In case it still stuck, run: `netcfg -d --` this will clean up all networking devices, and requires a reboot
-    * Verify sandbox was deployed successfully by issuing the command: `docker ps`
-        * You should see two containers, one for the `nginx` proxy and another one for the actual tools
-            * ![setup](images/setup-hortonworks.PNG)
-    * In order to stop the HDP sandbox just run:
-        * `docker stop sandbox-hdp`
-        * `docker stop sandbox-proxy`
-        * To remove the containers you just need to do:
-            * `docker rm sandbox-hdp`
-            * `docker rm sandbox-proxy`
-        * To remove the image just run:
-            * `docker rmi hortonworks/sandbox-hdp:3.0.1`
-            * `docker rmi hortonworks/sandbox-proxy:1.0`
-    * To start just run:
-        * `docker start sandbox-hdp`
-        * `docker start sandbox-proxy`
-    * In case you want a CNAME, you can add this line to your hosts file:
-        * `127.0.0.1 sandbox-hdp.hortonworks.com `
-            * `C:\Windows\System32\drivers\etc\hosts` on Windows
-            * `/etc/hosts` on a MacOSX
-    * Now we are able to open `Ambari` by accessing:
-        * `http://sandbox-hdp.hortonworks.com:1080/splash.html`
-        * `sandbox-hdp.hortonworks.com:8080` or `127.0.0.1:8080`
-    * The default `Ambari` user is:
-        * username: `maria_dev`, password: `maria_dev`
-
-* First, we will import both `ml-100k` `u.data` and `u.item` using `Hive`
-    * You can find `Hive` by clicking the menu icon on the top right corner
-    * After importing the data, we are able to run SQL queries even though the data is saved in a Hadoop cluster (HDFS) 
-        * `SELECT movie_id, count(movie_id) as ratingCount FROM ratings GROUP BY movie_id ORDER BY ratingCount DESC`
-        * `SELECT name FROM movie_names WHERE movie_id = 50;`
+# Hands-On Hadoop
 
 ## Hadoop Overview and History
 
